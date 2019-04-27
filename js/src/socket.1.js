@@ -330,6 +330,7 @@ function doPlayerUpdate(players) {
 
     players.forEach(function (plr) {
         if (plr == null || plr.name == undefined || plr.name == "") return;
+        if (plr.identifer == undefined || plr.identifer == "") return;
 
         if (!(plr.identifer in localCache)) {
             localCache[plr.identifer] = { marker: null, lastHtml: null };
@@ -347,7 +348,7 @@ function doPlayerUpdate(players) {
         });
 
         var opacity = 1.0;
-        if (window.Filter){
+        if (window.Filter != undefined){
             if (plr[window.Filter.on] == undefined) {
                 opacity = 0.0;
             }else{

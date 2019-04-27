@@ -71,6 +71,15 @@ window.changeServer = function (nameOfServer) {
 
     $("#server_name").text(nameOfServer);
 
+    // Reset controls.
+    $("#playerSelect").children().remove();
+    $("#playerSelect").append("<option></option>");
+
+    $("#filterOn").children().remove();
+    $("#filterOn").append("<option></option>");
+    $("#onlyShow").text("");
+    window.Filter = undefined;
+
     setTimeout(() => {
         initBlips(connectedTo.getBlipUrl());
         connect(connectedTo.getSocketUrl());
@@ -96,7 +105,8 @@ function globalInit() {
                 debug: false,
                 tileDirectory: "images/tiles",
                 iconDirectory: "images/icons",
-                showIdentifiers: false
+                showIdentifiers: false,
+                groupPlayers: true
             }, p);
 
             for (const serverName in config.servers) {
